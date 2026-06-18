@@ -10,8 +10,8 @@
 
 	<div class="filter-group">
 		<label class="toggle-pill">
-			<input type="checkbox" id="hide-zero-sugar" checked>
-			<span>Show zero-sugar</span>
+			<input type="checkbox" id="show-sugar" checked>
+			<span>Show sugar</span>
 		</label>
 		<label class="toggle-pill">
 			<input type="checkbox" id="hide-discontinued">
@@ -161,16 +161,16 @@ $(document).ready(function() {
 		}
 	});
 
-	// Zero-sugar toggle
+	// Sugar toggle
 	// Sugar is column index 7 (Sugar g/100ml). 
-	// We filter rows where that cell equals "0" or "0.0" etc.
+	// We filter rows where that cell doesn't equal "0" or "0.0" etc.
 	$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-		if ($('#hide-zero-sugar').is(':checked')) return true; // show all
+		if ($('#show-sugar').is(':checked')) return true; // show all
 		var sugarVal = parseFloat(data[7]); // column 7 = Sugar (g/100ml)
-		return !(sugarVal === 0 || isNaN(sugarVal) && data[7].trim() === '0');
+		return sugarVal === 0 || isNaN(sugarVal) && data[7].trim() === '0';
 	});
 
-	$('#hide-zero-sugar').on('change', function() {
+	$('#show-sugar').on('change', function() {
 		table.draw();
 	});
 
