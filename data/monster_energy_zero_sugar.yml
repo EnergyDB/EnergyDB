@@ -1,0 +1,34 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Zero Sugar"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 0
+ingredients:
+    - "Wasser"
+    - "Säuerungsmittel (Citronensäure)"
+    - "Kohlensäure"
+    - "Geschmacksverstärker (Erythrit)"
+    - "Aromen"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Konservierungsstoffe (Sorbinsäure, Benzoesäure)"
+    - "Süssungsmittel (Sucralose, Acesulfam-K)"
+    - "Koffein (32mg/100ml)"
+    - "Farbstoffe (Anthocyane E163, Riboflavin E101)"
+    - "Vitamine (Niacin, B6, B12)"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+stores:
+    -
+        name: "Brack"
+        url: "https://www.brack.ch/monster-energy-drink-energy-zero-sugar-12-x-0-5-l-1667619"
+        price: 20.40
+        amount: 12
+        date: 2026-06-18
+        comment: ""

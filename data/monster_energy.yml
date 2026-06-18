@@ -1,0 +1,34 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Original"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 8.4
+ingredients:
+    - "Wasser"
+    - "Zucker"
+    - "Glukosesirup"
+    - "Kohlensäure"
+    - "Säuerungsmittel (Citronensäure)"
+    - "Aromen"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Koffein (32mg/100ml)"
+    - "Konservierungsstoffe (Sorbinsäure, Benzoesäure)"
+    - "Farbstoffe (Anthocyane, Riboflavin)"
+    - "Vitamine (Niacin, B6, B12)"
+    - "Süssungsmittel (Sucralose)"
+    - "Inosit (2mg/100ml)"
+stores:
+    -
+        name: "Migros"
+        url: "https://www.migros.ch/product/120268300000"
+        price: 10.20
+        amount: 6
+        date: 2026-06-18
+        comment: ""
