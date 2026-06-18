@@ -5,6 +5,7 @@ product: # ex. "Original"
 size: # size one unit (1 bottle/1 can) in milliliter, ex. 500
 packaging: # type of packaging, {Can/Glas/PET/Tetrapak}
 caffeine: # caffeine in milligrams per 100ml, ex. 22
+taurine: # taurine in milligrams per 100ml, ex. 400
 sugar: # sugar in grams per 100ml, ex. 5
 ingredients: # list of ingredients in original language
     - "Some"
