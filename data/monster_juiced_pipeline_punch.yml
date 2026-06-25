@@ -1,0 +1,39 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Juiced Pipeline Punch"
+comment: "Brack states 33 kcal but various other state 36 kcal. 36 seems to make more sense because of the amount of sugar, that's why 36 was chosen."
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 7.8
+kcal: 36
+ingredients:
+    - "Wasser"
+    - "6% Fruchtsaft aus Fruchtsaftkonzentrat (Orange, Apfel, Guave, Passionsfrucht, Ananas)"
+    - "Zucker"
+    - "Glukosesirup"
+    - "Kohlensäure"
+    - "Taurin (400mg/100ml)"
+    - "Säuerungsmittel (Citronensäure)"
+    - "Maltodextrin"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "Konservierungsstoffe (Kaliumsorbat, Natriumbenzoat)"
+    - "Koffein (32mg/100ml)"
+    - "Süssungsmittel (Sucralose)"
+    - "Vitamine (Niacin, B6, B12)"
+    - "pflanzliche Öle (Kokosnuss, Rapssamen)"
+    - "modifizierte Stärke"
+    - "Salz"
+    - "Inosit (2mg/100ml)"
+    - "Farbstoffe (Riboflavin E101, Carotine E160a)"
+stores:
+    -
+        name: "Brack"
+        url: "https://www.brack.ch/monster-energy-drink-pipeline-punch-12-x-500-ml-1571268"
+        price: 20.40
+        amount: 12
+        date: 2026-06-25
+        comment: ""

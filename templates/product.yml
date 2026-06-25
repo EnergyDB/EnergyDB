@@ -1,3 +1,6 @@
+# This file has been modified from the original version in github.com/matelab-ch.
+# Modifications by: github.com/EnergyDB
+
 draft: true # set to false if all information is filled out
 discontinued: false # set to true if the product is no loger available
 brand: # ex. "Club-mate"
@@ -8,6 +11,7 @@ packaging: # type of packaging, {Can/Glas/PET/Tetrapak}
 caffeine: # caffeine in milligrams per 100ml, ex. 22
 taurine: # taurine in milligrams per 100ml, ex. 400
 sugar: # sugar in grams per 100ml, ex. 5
+kcal: # kcal per 100ml ex. 35
 ingredients: # list of ingredients in original language
     - "Some"
     - "Ingredients"
