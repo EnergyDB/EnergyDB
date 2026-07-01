@@ -1,0 +1,35 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Ultra Strawberry Dreams"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 30
+taurine: 400
+sugar: 0
+kcal: 2
+ingredients:
+    - "Wasser"
+    - "Geschmacksverstärker (Erythrit)"
+    - "Säuerungsmittel (Citronensäure)"
+    - "Kohlensäure"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "natürliches Erdbeeraroma mit anderen natürlichen Aromen"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Konservierungsstoffe (Kaliumsorbat, Natriumbenzoat)"
+    - "Koffein (30mg/100ml)"
+    - "Süssungsmittel (Sucralose, Acesulfam-K)"
+    - "Vitamine (Niacin, Pantothensäure, B6, B12)"
+    - "Stabilisator (Glycerinester aus Wurzelharz), Farbstoffe (E160, E163)"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+stores:
+    -
+        name: "Brack"
+        url: "https://www.brack.ch/monster-energy-drink-strawberry-dreams-12-x-0-5-l-1846123"
+        price: 20.40
+        amount: 12
+        date: 2026-06-18
+        comment: ""

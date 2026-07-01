@@ -1,0 +1,42 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Juiced Viking Berry"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 7.6
+kcal: 35
+ingredients:
+    - "Wasser"
+    - "Zucker"
+    - "5% Fruchtsaft aus Fruchtsaftkonzentraten (Apfel, Sauerkirsche, Schwarze Johannisbeere, Brombeere)"
+    - "Glukosesirup"
+    - "Geschmacksverstärker (Erythrit)"
+    - "Kohlensäure"
+    - "Säuerungsmittel (Citronensäure, Apfelsäure)"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Aromen"
+    - "Konservierungsstoffe (Kaliumsorbat)"
+    - "Koffein (32mg/100ml)"
+    - "schwarzes Karottensaftkonzentrat"
+    - "Süssungsmittel (Sucralose)"
+    - "pflanzliche Öle (Kokosnuss, Rapssamen)"
+    - "Vitamine (Niacin, B6, B12)"
+    - "modifizierte Stärke"
+    - "Natriumchlorid"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+    - "Farbstoffe (Riboflavin)"
+stores:
+    -
+        name: "Brack"
+        url: "https://www.brack.ch/monster-energy-drink-juiced-viking-berry-12-x-0-5-l-2040605"
+        price: 20.40
+        amount: 12
+        date: 2026-06-23
+        comment: ""

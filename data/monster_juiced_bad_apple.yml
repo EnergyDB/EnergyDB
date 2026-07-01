@@ -1,0 +1,42 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Juiced Bad Apple"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 8.2
+kcal: 36
+ingredients:
+    - "Wasser"
+    - "Zucker"
+    - "6% Fruchtsaft aus Fruchtsaftkonzentraten (Apfel [4.7%], Birne, Kiwi, Sauerkirsche)"
+    - "Glukosesirup"
+    - "Säuerungsmittel (Citronensäure, Apfelsäure)"
+    - "Kohlensäure"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Aroma"
+    - "Verdickungsmittel (Pektine)"
+    - "Farbstoffe (E150d, E101)"
+    - "Konservierungsstoffe (Kaliumsorbat)"
+    - "Koffein (32mg/100ml)"
+    - "pflanzliche Öle (Kokosnuss, Rapssamen)"
+    - "modifizierte Stärke"
+    - "Vitamine (Niacin, B6, B12)"
+    - "schwarzes Karottensaftkonzentrat"
+    - "Süssungsmittel (Sucralose)"
+    - "Natriumchlorid"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+stores:
+    -
+        name: "Migros"
+        url: "https://www.migros.ch/product/120903800000"
+        price: 10.20
+        amount: 6
+        date: 2026-06-18
+        comment: ""

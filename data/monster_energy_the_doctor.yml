@@ -1,0 +1,39 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "VR46 The Doctor"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 16
+kcal: 71
+ingredients:
+    - "Wasser"
+    - "Zucker"
+    - "Glukosesirup"
+    - "5% Fruchtsaft aus Fruchtsaftkonzentraten (Orange, Zitrone)"
+    - "Maltodextrin"
+    - "Zitronenzellen"
+    - "Kohlensäure"
+    - "Aromen"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Calciumlactat, Natriumcitrate)"
+    - "Säuerungsmittel (Citronensäure)"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Konservierungsstoffe (Kaliumsorbat)"
+    - "Antioxidationsmittel (Ascorbinsäure)"
+    - "Koffein (32mg/100ml)"
+    - "Vitamine (Niacin, B6, B12)"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+    - "Farbstoffe (Riboflavin E101)"
+stores:
+    -
+        name: "Brack"
+        url: "https://www.brack.ch/monster-energy-drink-the-doctor-12-x-0-5-l-1893733"
+        price: 20.40
+        amount: 12
+        date: 2026-07-01
+        comment: ""

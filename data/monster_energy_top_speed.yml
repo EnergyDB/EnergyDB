@@ -1,0 +1,38 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Top Speed"
+comment: 'Used to be called "Lewis Hamilton"'
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 0
+kcal: 3
+ingredients:
+    - "Wasser"
+    - "Kohlensäure"
+    - "Säuerungsmittel (Citronensäure)"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate)"
+    - "Maltodextrin"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Aromen"
+    - "Konservierungsstoffe (Kaliumsorbat, Natriumbenzoat)"
+    - "Süssungsmittel (Sucralose, Acesulfam-K)"
+    - "Koffein (32mg/100ml)"
+    - "Stabilisatoren (Gummi Arabicum, Glycerinester aus Wurzelharz)"
+    - "Vitamine (Niacin, B6, B12)"
+    - "pflanzliche Öle (Kokosnuss, Rapssamen)"
+    - "Salz"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+    - "Farbstoffe (E101, E160e)"
+stores:
+    -
+        name: "Migros"
+        url: "https://www.migros.ch/product/mo/13778494"
+        price: 10.20
+        amount: 6
+        date: 2026-06-18
+        comment: ""
