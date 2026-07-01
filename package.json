@@ -1,0 +1,29 @@
+{
+  "name": "energydb",
+  "version": "1.0.0",
+  "description": "![GitHub Repo stars](https://img.shields.io/github/stars/rtfmkiesel/matelab) ![GitHub License](https://img.shields.io/github/license/rtfmkiesel/matelab) ![GitHub deployments](https://img.shields.io/github/deployments/rtfmkiesel/matelab/github-pages?label=deployment)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./src/input.css -o ./static/style.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./static/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManDDDDD/EnergyDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ManDDDDD/EnergyDB/issues"
+  },
+  "homepage": "https://github.com/ManDDDDD/EnergyDB#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "daisyui": "^5.6.6",
+    "lucide-static": "^1.22.0",
+    "tailwindcss": "^4.3.2"
+  }
+}

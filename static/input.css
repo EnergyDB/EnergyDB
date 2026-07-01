@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+/* tell Tailwind where to scan for classes, since there's no HTML to auto-detect */
+@source "../templates/**/*.jinja2";
