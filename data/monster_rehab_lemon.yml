@@ -1,0 +1,38 @@
+draft: false
+discontinued: false
+brand: "Monster Energy"
+product: "Rehab Iced Tea & Lemonade"
+comment: ""
+size: 500
+packaging: "Can"
+caffeine: 32
+taurine: 400
+sugar: 1.9
+kcal: 11
+ingredients:
+    - "Wasser"
+    - "Glukosesirup"
+    - "5% Zitronensaft aus Zitronensaftkonzentrat"
+    - "Taurin (400mg/100ml)"
+    - "Säureregulator (Natriumcitrate, Kaliumdihydrogenphosphat, Caliumlactat)"
+    - "Säuerungsmittel (Citronensäure, Apfelsäure)"
+    - "Mineralsalz (Magnesiumlactat)"
+    - "Tee-Extrakt (0.1%)"
+    - "Aromastoff Panax Ginseng Wurzelextrakt (85mg/100ml)"
+    - "Konservierungsstoffe (Sorbinsäure)"
+    - "Koffein (32mg/100ml)"
+    - "Süssungsmittel (Sucralose, Acesulfame-K)"
+    - "Vitamine (Niacin, Pantothensäure, B6, B12)"
+    - "konzentriertes Kokosnusswasser"
+    - "Salz"
+    - "Fruchtpüree (Acai, Goji-Beere, Mangostane)"
+    - "Guaranasamenextrakt (2mg/100ml)"
+    - "Inosit (2mg/100ml)"
+stores:
+    -
+        name: "Brack"
+        url: "https://www.brack.ch/monster-energy-drink-rehab-12-x-500-ml-1571270"
+        price: 20.40
+        amount: 12
+        date: 2026-07-01
+        comment: ""
