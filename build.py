@@ -14,7 +14,6 @@ from markupsafe import Markup
 SCRIPT_DIR = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
 OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output")
 DATA_DIR = os.path.join(SCRIPT_DIR, "data")
-LUCIDE_DIR = os.path.join(SCRIPT_DIR, "node_modules", "lucide-static", "icons")
 
 
 def calc_score(caffeine, sugar, avrprice):
@@ -224,6 +223,7 @@ def gather_sitemap_urls():
         for fpath in sorted(glob.glob(f"{OUTPUT_DIR}/**/*.html", recursive=True))
     ]
 
+
 def build_css():
     print("[+] Building Tailwind/daisyUI CSS")
     subprocess.run(
@@ -232,20 +232,27 @@ def build_css():
         check=True,
     )
 
-def lucide_icon(name: str, css_class: str = ""):
-    path = os.path.join(LUCIDE_DIR, f"{name}.svg")
-    with open(path, encoding="utf-8") as f:
-        svg = f.read()
-    if css_class:
-        svg = svg.replace("<svg ", f'<svg class="{css_class}" ', 1)
-    return Markup(svg)
+
+def build_js():
+    print("[+] Building lucide-icons.js")
+    subprocess.run(
+        [
+            "npx", "esbuild", f"{SCRIPT_DIR}/static/lucide-icons.js",
+            "--bundle",
+            "--minify",
+            "--allow-overwrite",
+            f"--outfile={SCRIPT_DIR}/static/lucide-icons.js",
+        ],
+        check=True,
+    )
+
 
 def main(args):
     build_css()
+    build_js()
     prepare_output_dir()
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(f"{SCRIPT_DIR}/templates/"))
-    env.globals["icon"] = lucide_icon
 
     products = render_products(env, render_drafts=args.drafts)
     render_index(env, products)

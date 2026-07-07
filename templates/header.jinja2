@@ -35,9 +35,10 @@ Modifications by: github.com/EnergyDB
     <link rel=icon type=image/x-icon href=/logo.ico>
 
     <script src="/jquery-3.7.1.min.js"></script>
+    <script src="/lucide-icons.js"></script>
     <script>
         (function () {
-            const saved = localStorage.getItem("theme") || "light";
+            const saved = localStorage.getItem("data-theme") || "light";
             document.documentElement.setAttribute("data-theme", saved);
         })();
     </script>
@@ -65,8 +66,8 @@ Modifications by: github.com/EnergyDB
         <div class="navbar-end gap-2">
             <label class="swap swap-rotate btn btn-ghost btn-circle">
                 <input type="checkbox" id="theme-controller"/>
-                {{ icon("sun", "swap-off fill-current") }}
-                {{ icon("moon", "swap-on fill-current") }}
+                <i data-lucide="sun" class="swap-off"></i>
+                <i data-lucide="moon" class="swap-on"></i>
             </label>
 
             <a class="btn btn-ghost btn-circle" href="https://github.com/EnergyDB" target="_blank"
@@ -86,16 +87,13 @@ Modifications by: github.com/EnergyDB
     </div>
 
     <script>
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
         document.addEventListener('DOMContentLoaded', () => {
-            const themeCheckbox = document.querySelector('.theme-controller');
+            const themeCheckbox = document.querySelector('#theme-controller');
             if (themeCheckbox) {
-                themeCheckbox.checked = savedTheme === 'dark';
+                themeCheckbox.checked = localStorage.getItem("data-theme") === 'dark';
                 themeCheckbox.addEventListener('change', (e) => {
                     const theme = e.target.checked ? 'dark' : 'light';
-                    localStorage.setItem('app-theme', theme);
+                    localStorage.setItem('data-theme', theme);
                     document.documentElement.setAttribute('data-theme', theme);
                 });
             }
