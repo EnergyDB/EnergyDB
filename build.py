@@ -237,10 +237,9 @@ def build_js():
     print("[+] Building lucide-icons.js")
     subprocess.run(
         [
-            "npx", "esbuild", f"{SCRIPT_DIR}/static/lucide-icons.js",
+            "npx", "esbuild", f"{SCRIPT_DIR}/static/lucide-icons.src.js",
             "--bundle",
             "--minify",
-            "--allow-overwrite",
             f"--outfile={SCRIPT_DIR}/static/lucide-icons.js",
         ],
         check=True,

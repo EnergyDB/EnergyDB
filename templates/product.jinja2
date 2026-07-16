@@ -6,96 +6,106 @@ Modifications by: github.com/EnergyDB
 {% include "header.jinja2" %}
 
 <div class="mb-6">
-	<h2 class="text-3xl font-bold">{{ item['brand'] }} <span class="opacity-60 font-normal">{{ item['product'] }}</span></h2>
-	<p class="text-sm opacity-60 mt-1">
-		{{ item['size'] }}ml; {{ item['packaging'] }};
-		<a class="link link-hover text-sm" href="https://github.com/EnergyDB/blob/main/data/{{ item['filename'] }}" target="_blank">View on GitHub ↗</a>
-	</p>
+    <h2 class="text-3xl font-bold">{{ item['brand'] }} <span class="opacity-60 font-normal">{{ item['product'] }}</span>
+    </h2>
+    <p class="text-sm opacity-60 mt-1">
+        {{ item['size'] }}ml; {{ item['packaging'] }};
+        <a class="link link-hover text-sm" href="https://github.com/EnergyDB/blob/main/data/{{ item['filename'] }}"
+           target="_blank">View on GitHub ↗</a>
+    </p>
 </div>
 
 <div class="stats stats-vertical md:stats-horizontal shadow border border-base-300 w-full mb-8">
-	<div class="stat">
-		<div class="stat-title text-xs">Caffeine</div>
-		<div class="stat-value text-primary text-2xl">{{ item['caffeine'] }}<span class="text-xs opacity-60 font-normal"> mg/100ml</span></div>
-	</div>
-	<div class="stat">
-		<div class="stat-title text-xs">Total Caffeine</div>
-		<div class="stat-value text-primary text-2xl">{{ item['caffeinetotal'] }}<span class="text-xs opacity-60 font-normal"> mg</span></div>
-	</div>
-	<div class="stat">
-		<div class="stat-title text-xs">Sugar</div>
-		<div class="stat-value text-primary text-2xl">{{ item['sugar'] }}<span class="text-xs opacity-60 font-normal"> g/100ml</span></div>
-	</div>
-	<div class="stat">
-		<div class="stat-title text-xs">Total Sugar</div>
-		<div class="stat-value text-primary text-2xl">{{ item['sugartotal'] }}<span class="text-xs opacity-60 font-normal"> g</span></div>
-	</div>
-	<div class="stat">
-		<div class="stat-title text-xs">Avg Price</div>
-		<div class="stat-value text-primary text-2xl">{{ item['averageprice'] }}<span class="text-xs opacity-60 font-normal"> CHF</span></div>
-	</div>
-	<div class="stat">
-		<div class="stat-title text-xs">
-			Score
-			<span class="tooltip tooltip-right md:tooltip-left" data-tip="Caffeine / ((Sugar + 1) x Avg. Price)">
+    <div class="stat">
+        <div class="stat-title text-xs">Caffeine</div>
+        <div class="stat-value text-primary text-2xl">{{ item['caffeine'] }}<span
+                class="text-xs opacity-60 font-normal"> mg/100ml</span></div>
+    </div>
+    <div class="stat">
+        <div class="stat-title text-xs">Total Caffeine</div>
+        <div class="stat-value text-primary text-2xl">{{ item['caffeinetotal'] }}<span
+                class="text-xs opacity-60 font-normal"> mg</span></div>
+    </div>
+    <div class="stat">
+        <div class="stat-title text-xs">Sugar</div>
+        <div class="stat-value text-primary text-2xl">{{ item['sugar'] }}<span class="text-xs opacity-60 font-normal"> g/100ml</span>
+        </div>
+    </div>
+    <div class="stat">
+        <div class="stat-title text-xs">Total Sugar</div>
+        <div class="stat-value text-primary text-2xl">{{ item['sugartotal'] }}<span
+                class="text-xs opacity-60 font-normal"> g</span></div>
+    </div>
+    <div class="stat">
+        <div class="stat-title text-xs">Avg Price</div>
+        <div class="stat-value text-primary text-2xl">{{ item['averageprice'] }}<span
+                class="text-xs opacity-60 font-normal"> CHF</span></div>
+    </div>
+    <div class="stat">
+        <div class="stat-title text-xs">
+            Score
+            <span class="tooltip tooltip-right md:tooltip-left" data-tip="Caffeine / ((Sugar + 1) x Avg. Price)">
 				<span class="underline decoration-dotted cursor-help">(?)</span>
 			</span>
-		</div>
-		<div class="stat-value text-primary text-2xl">{{ item['score'] }}</div>
-	</div>
+        </div>
+        <div class="stat-value text-primary text-2xl">{{ item['score'] }}</div>
+    </div>
 </div>
 
 <h3 class="text-xl font-semibold mb-2">Ingredients</h3>
-<ul class="list-disc list-inside mb-8 space-y-1">
-	{% for ingredient in item['ingredients'] %}
-	<li>{{ ingredient }}</li>
-	{% endfor %}
-</ul>
+<div class="rounded-box shadow border border-base-300 mb-8">
+    <ul class="list-disc list-inside m-4 ml-6 space-y-1">
+        {% for ingredient in item['ingredients'] %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+</div>
 
 <h3 class="text-xl font-semibold mb-2">Stores</h3>
 {% if item['discontinued'] %}
-<div role="alert" class="alert alert-warning">
-	<span>This product is no longer available.</span>
-</div>
+    <div role="alert" class="alert alert-warning">
+        <span>This product is no longer available.</span>
+    </div>
 {% else %}
-<div class="overflow-x-auto">
-	<table id="product-table" class="table table-zebra table-sm">
-		<thead>
-			<tr>
-				<th>Store</th>
-				<th class="text-right">Price 1 Unit<br><span class="text-xs opacity-60">(CHF)</span></th>
-				<th class="text-right">Price 1 Pack<br><span class="text-xs opacity-60">(CHF)</span></th>
-				<th class="text-right">Units per Pack</th>
-				<th>Comment</th>
-				<th>Last modified</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for store in item['stores'] %}
-			<tr>
-				<td><a href="{{ store['url'] }}" target="_blank" rel="noopener noreferrer" class="link link-hover">{{ store['name'] }} ↗</a></td>
-				<td class="text-right">{{ store['price1u'] }}</td>
-				<td class="text-right">{{ store['price'] }}</td>
-				<td class="text-right">{{ store['amount'] }}</td>
-				<td>{{ store['comment'] }}</td>
-				<td class="opacity-60">{{ store['date'] }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+    <div class="overflow-x-auto">
+        <table id="product-table" class="table table-zebra table-sm">
+            <thead>
+            <tr>
+                <th>Store</th>
+                <th class="text-right">Price 1 Unit<br><span class="text-xs opacity-60">(CHF)</span></th>
+                <th class="text-right">Price 1 Pack<br><span class="text-xs opacity-60">(CHF)</span></th>
+                <th class="text-right">Units per Pack</th>
+                <th>Comment</th>
+                <th>Last modified</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for store in item['stores'] %}
+                <tr>
+                    <td><a href="{{ store['url'] }}" target="_blank" rel="noopener noreferrer"
+                           class="link link-hover">{{ store['name'] }} ↗</a></td>
+                    <td class="text-right">{{ store['price1u'] }}</td>
+                    <td class="text-right">{{ store['price'] }}</td>
+                    <td class="text-right">{{ store['amount'] }}</td>
+                    <td>{{ store['comment'] }}</td>
+                    <td class="opacity-60">{{ store['date'] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endif %}
 
 <script>
-$(document).ready(function() {
-	$('#product-table').DataTable({
-		order: [[0, 'asc']],
-		scrollX: true,
-		paging: false,
-		bInfo: false,
-		searching: false,
-	});
-});
+    $(document).ready(function () {
+        $('#product-table').DataTable({
+            order: [[0, 'asc']],
+            scrollX: true,
+            paging: false,
+            bInfo: false,
+            searching: false,
+        });
+    });
 </script>
 
 {% include "footer.jinja2" %}

@@ -5,150 +5,325 @@ Modifications by: github.com/EnergyDB
 
 {% include "header.jinja2" %}
 
+<style>
+    {% for col in range(1, 13) %}
+        #data-table.hide-col-{{ col }} th:nth-child({{ col + 1 }}),
+        #data-table.hide-col-{{ col }} td:nth-child({{ col + 1 }}) {
+            display: none;
+        }
+    {% endfor %}
+</style>
+<style>
+    .sort-icon {
+        width: 0.9em;
+        height: 0.9em;
+        display: none;
+        vertical-align: middle;
+        margin-left: 0.25rem;
+        opacity: 0.7;
+    }
+
+    th .sort-icon-idle {
+        display: inline-block;
+        opacity: 0.4;
+    }
+
+    th.sorted-asc .sort-icon-idle,
+    th.sorted-desc .sort-icon-idle {
+        display: none;
+    }
+
+    th.sorted-asc .sort-icon-asc {
+        display: inline-block;
+    }
+
+    th.sorted-desc .sort-icon-desc {
+        display: inline-block;
+    }
+</style>
+
 <div role="alert" class="alert alert-warning block md:hidden mb-4">
-	<span>Not designed for small screens ¯\_(ツ)_/¯</span>
+    <span>Not designed for small screens ¯\_(ツ)_/¯</span>
 </div>
 
 <div class="flex flex-wrap items-center gap-2 mb-6">
-	<input type="search" id="search-input" placeholder="Search products…" aria-controls="data-table"
-	       class="input input-bordered input-sm flex-1 min-w-[200px]">
+    <input type="search" id="search-input" placeholder="Search products…" aria-controls="data-table"
+           class="input input-bordered input-sm flex-1 min-w-[200px]">
 
-	<div class="flex flex-wrap items-center gap-2">
-		<label class="label cursor-pointer gap-2 border border-base-300 rounded-btn px-3 py-1.5">
-			<span class="label-text text-sm">Show sugar</span>
-			<input type="checkbox" id="show-sugar" checked class="toggle toggle-sm toggle-primary">
-		</label>
-		<label class="label cursor-pointer gap-2 border border-base-300 rounded-btn px-3 py-1.5">
-			<span class="label-text text-sm">Show discontinued</span>
-			<input type="checkbox" id="hide-discontinued" class="toggle toggle-sm toggle-primary">
-		</label>
+    <div class="flex flex-wrap items-center gap-2">
+        <label class="label cursor-pointer gap-2 border border-base-300 rounded-btn px-3 py-1.5">
+            <span class="label-text text-sm">Show sugar</span>
+            <input type="checkbox" id="show-sugar" checked class="toggle toggle-sm toggle-primary">
+        </label>
+        <label class="label cursor-pointer gap-2 border border-base-300 rounded-btn px-3 py-1.5">
+            <span class="label-text text-sm">Show discontinued</span>
+            <input type="checkbox" id="hide-discontinued" class="toggle toggle-sm toggle-primary">
+        </label>
 
-		<div class="dropdown dropdown-end" id="columns-dropdown">
-			<div tabindex="0" role="button" class="btn btn-sm btn-outline gap-1">
-				Columns
+        <div class="dropdown dropdown-end" id="columns-dropdown">
+            <div tabindex="0" role="button" class="btn btn-sm btn-outline gap-1">
+                Columns
                 <i data-lucide="chevron-down" class="w-3 h-3"></i>
-			</div>
-			<ul tabindex="0" class="dropdown-content menu menu-sm bg-base-100 rounded-box z-10 w-64 p-2 shadow border border-base-300">
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="1" checked><span class="label-text">Size</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="2" checked><span class="label-text">Packaging</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="3"><span class="label-text">Avg Price</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="4"><span class="label-text">Price per 100ml</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="5"><span class="label-text">Caffeine (mg/100ml)</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="6" checked><span class="label-text">Caffeine Total</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="7"><span class="label-text">Caffeine per Sugar</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="8"><span class="label-text">Price per Caffeine</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="9"><span class="label-text">Sugar (g/100ml)</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="10" checked><span class="label-text">Sugar Total</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="11"><span class="label-text">Sugar per Caffeine</span></label></li>
-				<li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox" class="checkbox checkbox-sm toggle-column" data-column="12" checked><span class="label-text">Score</span></label></li>
-			</ul>
-		</div>
-	</div>
+            </div>
+            <ul tabindex="0"
+                class="dropdown-content menu menu-sm bg-base-100 rounded-box z-10 w-64 p-2 shadow border border-base-300">
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="1" checked><span
+                        class="label-text">Size</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="2"><span
+                        class="label-text">Packaging</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="3" checked><span
+                        class="label-text">Avg Price</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="4"><span
+                        class="label-text">Price per 100ml</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="5"><span
+                        class="label-text">Caffeine (mg/100ml)</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="6" checked><span
+                        class="label-text">Caffeine Total</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="7"><span
+                        class="label-text">Caffeine per Sugar</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="8"><span
+                        class="label-text">Price per Caffeine</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="9"><span
+                        class="label-text">Sugar (g/100ml)</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="10" checked><span
+                        class="label-text">Sugar Total</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="11"><span
+                        class="label-text">Sugar per Caffeine</span></label></li>
+                <li><label class="label cursor-pointer justify-start gap-2"><input type="checkbox"
+                                                                                   class="checkbox checkbox-sm toggle-column"
+                                                                                   data-column="12" checked><span
+                        class="label-text">Score</span></label></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-<div class="overflow-x-auto">
-	<table id="data-table" class="table table-zebra table-sm">
-		<thead>
-			<tr>
-				<th>Product</th>
-				<th class="text-right">Size<br><span class="text-xs opacity-60">(ml)</span></th>
-				<th class="text-right">Packaging</th>
-				<th class="text-right">Avg. Price<br><span class="text-xs opacity-60">(CHF)</span></th>
-				<th class="text-right">Price/100ml<br><span class="text-xs opacity-60">(CHF)</span></th>
-				<th class="text-right">Caffeine<br><span class="text-xs opacity-60">(mg/100ml)</span></th>
-				<th class="text-right">Caffeine Total<br><span class="text-xs opacity-60">(mg)</span></th>
-				<th class="text-right">Caffeine/1g Sugar<br><span class="text-xs opacity-60">(mg)</span></th>
-				<th class="text-right">Price/1mg Caffeine<br><span class="text-xs opacity-60">(CHF)</span></th>
-				<th class="text-right">Sugar<br><span class="text-xs opacity-60">(g/100ml)</span></th>
-				<th class="text-right">Sugar Total<br><span class="text-xs opacity-60">(g)</span></th>
-				<th class="text-right">Sugar/1mg Caffeine<br><span class="text-xs opacity-60">(g)</span></th>
-				<th class="text-right">
-					Score
+<div class="overflow-x-auto rounded-box border border-base-content/20 bg-base-100">
+    <table id="data-table" class="table">
+        <thead>
+        <tr>
+            <th data-sort-icons="arrow-down-a-z,arrow-up-a-z" data-default-sort="asc">
+                <span class="th-label">Product</span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-down-a-z" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-up-z-a" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Size <span class="text-xs opacity-60">(ml)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-a-z,arrow-up-a-z" data-default-sort="asc">
+                <span class="th-label">Packaging</span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-down-a-z" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-up-z-a" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Avg. Price <span class="text-xs opacity-60">(CHF)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Price/100ml <span class="text-xs opacity-60">(CHF)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Caffeine <span class="text-xs opacity-60">(mg/100ml)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Caffeine Total <span class="text-xs opacity-60">(mg)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Caffeine/1g Sugar <span class="text-xs opacity-60">(mg)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Price/1mg Caffeine <span class="text-xs opacity-60">(CHF)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Sugar <span class="text-xs opacity-60">(g/100ml)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Sugar Total <span class="text-xs opacity-60">(g)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                <span class="th-label">Sugar/1mg Caffeine <span class="text-xs opacity-60">(g)</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+            <th class="text-right" data-sort-icons="arrow-down-1-0,arrow-up-0-1" data-default-sort="desc">
+                    <span class="th-label">Score
 					<span class="tooltip tooltip-left" data-tip="Caffeine / ((Sugar + 1) x Avg. Price)">
 						<span class="underline decoration-dotted cursor-help">(?)</span>
-					</span>
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for item in products %}
-			<tr{% if item.discontinued %} class="opacity-60"{% endif %}>
-				<td>
-					<a href="/products/{{ item['siteurl'] }}" class="link link-hover{% if item.discontinued %} line-through{% endif %}">{{ item["brand"] }} {{ item["product"] }}</a>
-					{% if item.discontinued %}<span class="text-xs opacity-70"> No longer available</span>{% endif %}
-				</td>
-				<td class="text-right">{{ item["size"] }}</td>
-				<td class="text-right">{{ item["packaging"] }}</td>
-				<td class="text-right">{{ item["averageprice"] }}</td>
-				<td class="text-right">{{ item["price100ml"] }}</td>
-				<td class="text-right">{{ item["caffeine"] }}</td>
-				<td class="text-right">{{ item["caffeinetotal"] }}</td>
-				<td class="text-right">{{ item["caffeine1gsugar"] }}</td>
-				<td class="text-right">{{ item["price1mgcaffeine"] }}</td>
-				<td class="text-right">{{ item["sugar"] }}</td>
-				<td class="text-right">{{ item["sugartotal"] }}</td>
-				<td class="text-right">{{ item["sugar1mgcaffeine"] }}</td>
-				<td class="text-right">{{ item["score"] }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+					</span></span>
+                <i data-lucide="arrow-down-up" class="sort-icon sort-icon-idle"></i>
+                <i data-lucide="arrow-up-0-1" class="sort-icon sort-icon-asc"></i>
+                <i data-lucide="arrow-down-1-0" class="sort-icon sort-icon-desc"></i>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in products %}
+            <tr{% if item.discontinued %} class="opacity-60"{% endif %}>
+                <td>
+                    <a href="/products/{{ item['siteurl'] }}"
+                       class="link link-hover{% if item.discontinued %} line-through{% endif %}"><span class="text-primary">{{ item["brand"] }}</span> {{ item["product"] }}</a>
+                    {% if item.discontinued %}<span class="text-xs opacity-70"> No longer available</span>{% endif %}
+                </td>
+                <td class="text-right">{{ item["size"] }}</td>
+                <td class="text-right">{{ item["packaging"] }}</td>
+                <td class="text-right">{{ item["averageprice"] }}</td>
+                <td class="text-right">{{ item["price100ml"] }}</td>
+                <td class="text-right">{{ item["caffeine"] }}</td>
+                <td class="text-right">{{ item["caffeinetotal"] }}</td>
+                <td class="text-right">{{ item["caffeine1gsugar"] }}</td>
+                <td class="text-right">{{ item["price1mgcaffeine"] }}</td>
+                <td class="text-right">{{ item["sugar"] }}</td>
+                <td class="text-right">{{ item["sugartotal"] }}</td>
+                <td class="text-right">{{ item["sugar1mgcaffeine"] }}</td>
+                <td class="text-right">{{ item["score"] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 <script>
-$(document).ready(function() {
-	var table = $('#data-table').DataTable({
-		order: [[0, 'asc']],
-		columnDefs: [
-			{ targets: [3, 4, 5, 7, 8, 9, 11], visible: false }
-		],
-		scrollX: true,
-		paging: false,
-		bInfo: false,
-		searching: true,
-		layout: {
-			topEnd: null,
-		},
-	});
+    document.addEventListener('DOMContentLoaded', function () {
+        var table = document.getElementById('data-table');
+        var tbody = table.querySelector('tbody');
+        var rows = Array.from(tbody.querySelectorAll('tr'));
 
-	$('#search-input').on('keyup', function () {
-		table.search(this.value).draw();
-	});
+        var searchInput = document.getElementById('search-input');
+        var showSugar = document.getElementById('show-sugar');
+        var hideDiscontinued = document.getElementById('hide-discontinued');
+        var columnToggles = document.querySelectorAll('.toggle-column');
 
-	$('.toggle-column').on('change', function() {
-		var column = table.column($(this).data('column'));
-		column.visible($(this).is(':checked'));
-	});
+        // --- column visibility (CSS-class based, no per-cell JS needed) ---
+        function applyColumnVisibility() {
+            columnToggles.forEach(function (cb) {
+                var col = cb.dataset.column;
+                table.classList.toggle('hide-col-' + col, !cb.checked);
+            });
+        }
 
-	table.columns().every(function(index) {
-		if (index > 0) {
-			var checkbox = $('.toggle-column[data-column="' + index + '"]');
-			checkbox.prop('checked', this.visible());
-		}
-	});
+        columnToggles.forEach(function (cb) {
+            cb.addEventListener('change', applyColumnVisibility);
+        });
+        applyColumnVisibility(); // set initial state from checked attributes
 
-	$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-		if ($('#show-sugar').is(':checked')) return true;
-		var sugarVal = parseFloat(data[9]); // Sugar column is now index 9
-		return sugarVal === 0 || (isNaN(sugarVal) && data[9].trim() === '0');
-	});
+        // --- row filtering (search + sugar + discontinued, combined) ---
+        function applyFilters() {
+            var query = searchInput.value.trim().toLowerCase();
+            var sugarOn = showSugar.checked;
+            var hideDisc = hideDiscontinued.checked;
 
-	$('#show-sugar').on('change', function() {
-		table.draw();
-	});
+            rows.forEach(function (row) {
+                var matchesSearch = !query || row.textContent.toLowerCase().indexOf(query) !== -1;
 
-	$.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-		if ($('#hide-discontinued').is(':checked')) return true;
-		var $row = $(table.row(dataIndex).node());
-		return !$row.hasClass('opacity-60');
-	});
+                var sugarCell = row.children[9]; // "Sugar (g/100ml)" column
+                var sugarVal = sugarCell ? parseFloat(sugarCell.textContent) : NaN;
+                var matchesSugar = sugarOn || sugarVal === 0 || isNaN(sugarVal);
 
-	$('#hide-discontinued').on('change', function() {
-		table.draw();
-	});
+                var isDiscontinued = row.classList.contains('opacity-60');
+                var matchesDiscontinued = !hideDisc || !isDiscontinued;
 
-	table.draw();
-});
+                row.style.display = (matchesSearch && matchesSugar && matchesDiscontinued) ? '' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('keyup', applyFilters);
+        showSugar.addEventListener('change', applyFilters);
+        hideDiscontinued.addEventListener('change', applyFilters);
+        applyFilters();
+
+        // --- simple click-to-sort on headers ---
+        var headers = table.querySelectorAll('thead th');
+        var sortState = {column: 0, asc: true};
+
+        function updateSortIndicators() {
+            headers.forEach(function (th, index) {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+                if (index === sortState.column) {
+                    th.classList.add(sortState.asc ? 'sorted-asc' : 'sorted-desc');
+                }
+            });
+        }
+
+        function sortRows(colIndex, asc) {
+            rows.sort(function (a, b) {
+                var av = a.children[colIndex].textContent.trim();
+                var bv = b.children[colIndex].textContent.trim();
+                var an = parseFloat(av), bn = parseFloat(bv);
+                var cmp = (!isNaN(an) && !isNaN(bn)) ? an - bn : av.localeCompare(bv);
+                return asc ? cmp : -cmp;
+            });
+            rows.forEach(function (row) {
+                tbody.appendChild(row);
+            });
+            updateSortIndicators();
+        }
+
+        headers.forEach(function (th, index) {
+            th.style.cursor = 'pointer';
+            th.addEventListener('click', function () {
+                var isSameColumn = sortState.column === index;
+                var asc = isSameColumn
+                    ? !sortState.asc
+                    : (th.dataset.defaultSort !== 'desc');
+                sortState = {column: index, asc: asc};
+                sortRows(index, asc);
+            });
+        });
+
+        window.initLucideIcons();
+        sortRows(0, true); // default sort: Product asc
+    });
 </script>
 
 {% include "footer.jinja2" %}
