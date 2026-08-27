@@ -15,42 +15,46 @@ Modifications by: github.com/EnergyDB
     </p>
 </div>
 
-<div class="stats stats-vertical md:stats-horizontal shadow border border-base-300 w-full mb-8">
-    <div class="stat">
-        <div class="stat-title text-xs">Caffeine</div>
-        <div class="stat-value text-primary text-2xl">{{ item['caffeine'] }}<span
-                class="text-xs opacity-60 font-normal"> mg/100ml</span></div>
-    </div>
-    <div class="stat">
-        <div class="stat-title text-xs">Total Caffeine</div>
-        <div class="stat-value text-primary text-2xl">{{ item['caffeinetotal'] }}<span
-                class="text-xs opacity-60 font-normal"> mg</span></div>
-    </div>
-    <div class="stat">
-        <div class="stat-title text-xs">Sugar</div>
-        <div class="stat-value text-primary text-2xl">{{ item['sugar'] }}<span class="text-xs opacity-60 font-normal"> g/100ml</span>
+<div class="aura aura-dual duration-15000 text-primary w-full mb-8">
+    <div class="stats stats-vertical md:stats-horizontal shadow border border-base-300 bg-base-100 w-full">
+        <div class="stat">
+            <div class="stat-title text-xs">Caffeine</div>
+            <div class="stat-value text-primary text-2xl">{{ item['caffeine'] }}<span
+                    class="text-xs opacity-60 font-normal"> mg/100ml</span></div>
         </div>
-    </div>
-    <div class="stat">
-        <div class="stat-title text-xs">Total Sugar</div>
-        <div class="stat-value text-primary text-2xl">{{ item['sugartotal'] }}<span
-                class="text-xs opacity-60 font-normal"> g</span></div>
-    </div>
-    <div class="stat">
-        <div class="stat-title text-xs">Avg Price</div>
-        <div class="stat-value text-primary text-2xl">{{ item['averageprice'] }}<span
-                class="text-xs opacity-60 font-normal"> CHF</span></div>
-    </div>
-    <div class="stat">
-        <div class="stat-title text-xs">
-            Score
-            <span class="tooltip tooltip-right md:tooltip-left" data-tip="Caffeine / ((Sugar + 1) x Avg. Price)">
-				<span class="underline decoration-dotted cursor-help">(?)</span>
-			</span>
+        <div class="stat">
+            <div class="stat-title text-xs">Total Caffeine</div>
+            <div class="stat-value text-primary text-2xl">{{ item['caffeinetotal'] }}<span
+                    class="text-xs opacity-60 font-normal"> mg</span></div>
         </div>
-        <div class="stat-value text-primary text-2xl">{{ item['score'] }}</div>
+        <div class="stat">
+            <div class="stat-title text-xs">Sugar</div>
+            <div class="stat-value text-primary text-2xl">{{ item['sugar'] }}<span
+                    class="text-xs opacity-60 font-normal"> g/100ml</span>
+            </div>
+        </div>
+        <div class="stat">
+            <div class="stat-title text-xs">Total Sugar</div>
+            <div class="stat-value text-primary text-2xl">{{ item['sugartotal'] }}<span
+                    class="text-xs opacity-60 font-normal"> g</span></div>
+        </div>
+        <div class="stat">
+            <div class="stat-title text-xs">Avg Price</div>
+            <div class="stat-value text-primary text-2xl">{{ item['averageprice'] }}<span
+                    class="text-xs opacity-60 font-normal"> CHF</span></div>
+        </div>
+        <div class="stat">
+            <div class="stat-title text-xs">
+                Score
+                <span class="tooltip tooltip-right md:tooltip-left" data-tip="Caffeine / ((Sugar + 1) x Avg. Price)">
+                 <span class="underline decoration-dotted cursor-help">(?)</span>
+              </span>
+            </div>
+            <div class="stat-value text-primary text-2xl">{{ item['score'] }}</div>
+        </div>
     </div>
 </div>
+
 
 <h3 class="text-xl font-semibold mb-2">Ingredients</h3>
 <div class="rounded-box shadow border border-base-300 mb-8">
@@ -60,6 +64,13 @@ Modifications by: github.com/EnergyDB
         {% endfor %}
     </ul>
 </div>
+
+{% if item['comment'] != "" %}
+    <div role="alert" class="alert alert-info alert-soft mb-8 w-full">
+        <i class="text-info" data-lucide="info"></i>
+        <span>{{ item['comment'] }}</span>
+    </div>
+{% endif %}
 
 <h3 class="text-xl font-semibold mb-2">Stores</h3>
 {% if item['discontinued'] %}
@@ -95,6 +106,7 @@ Modifications by: github.com/EnergyDB
         </table>
     </div>
 {% endif %}
+
 
 <script>
     $(document).ready(function () {
