@@ -21,18 +21,18 @@ Modifications by: github.com/EnergyDB
     <meta property="og:description" content="Compare energy drinks available in Switzerland">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://energydb.ch/">
-    <meta property="og:image" content="https://energydb.ch/logo_meta.png">
+    <meta property="og:image" content="https://energydb.ch/logo.svg">
     <meta property="og:locale" content="en_EN">
     <meta property="og:site_name" content="energydb.ch">
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="energydb.ch - The Swiss Energy Index">
     <meta name="twitter:description" content="Compare energy drinks available in Switzerland">
-    <meta name="twitter:image" content="https://energydb.ch/logo_meta.png">
+    <meta name="twitter:image" content="https://energydb.ch/logo.svg">
 
     <link rel=canonical href="https://energydb.ch">
     <link rel=alternate type=application/atom+xml title=atom href=https://energydb.ch/feed.xml>
-    <link rel=icon type=image/x-icon href=/logo.ico>
+    <link rel=icon type=image/svg+xml href=/favicon.svg>
 
     <script src="/lucide-icons.js"></script>
     <script>
@@ -48,7 +48,7 @@ Modifications by: github.com/EnergyDB
     <div class="navbar mb-8 px-0">
         <div class="navbar-start">
             <a href="/" class="flex items-center gap-4">
-                <img src="/logo_transparent.png" class="max-w-[50px] h-auto" alt="EnergyDB logo">
+                {% include "partials/logo.svg" %}
                 <div>
                     <h1 class="text-2xl font-bold leading-none">EnergyDB</h1>
                     <p class="hidden md:block text-sm opacity-60">The Swiss Energy Index</p>
