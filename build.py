@@ -3,10 +3,12 @@ import glob
 import re
 import datetime
 import shutil
+import subprocess
 from typing import Iterable, Dict
 
 import yaml
 import jinja2
+from markupsafe import Markup
 
 # argument
 SCRIPT_DIR = os.path.abspath(os.path.realpath(os.path.dirname(__file__)))
@@ -222,10 +224,35 @@ def gather_sitemap_urls():
     ]
 
 
+def build_css():
+    print("[+] Building Tailwind/daisyUI CSS")
+    subprocess.run(
+        ["npx", "@tailwindcss/cli", "-i", f"{SCRIPT_DIR}/static/input.css",
+         "-o", f"{SCRIPT_DIR}/static/style.css", "--minify"],
+        check=True,
+    )
+
+
+def build_js():
+    print("[+] Building lucide-icons.js")
+    subprocess.run(
+        [
+            "npx", "esbuild", f"{SCRIPT_DIR}/static/lucide-icons.src.js",
+            "--bundle",
+            "--minify",
+            f"--outfile={SCRIPT_DIR}/static/lucide-icons.js",
+        ],
+        check=True,
+    )
+
+
 def main(args):
+    build_css()
+    build_js()
     prepare_output_dir()
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(f"{SCRIPT_DIR}/templates/"))
+
     products = render_products(env, render_drafts=args.drafts)
     render_index(env, products)
 

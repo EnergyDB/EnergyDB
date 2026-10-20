@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>matelab.ch - The Swiss Mate Index</title>
-  <link href="https://matelab.ch/"/>
-  <link href="https://matelab.ch/feed.xml" rel="self"/>
-  <icon>https://matelab.ch/logo_transparent.png</icon>
-  <logo>https://matelab.ch/logo_transparent.png</logo>
-  <id>https://matelab.ch/</id>
+  <title>energydb.ch - The Swiss Energy Index</title>
+  <link href="https://energydb.ch/"/>
+  <link href="https://energydb.ch/feed.xml" rel="self"/>
+  <icon>https://energydb.ch/logo.svg</icon>
+  <logo>https://energydb.ch/logo.svg</logo>
+  <id>https://energydb.ch/</id>
   <updated>{{ now().strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
-  <subtitle>Compare mate-based beverages available in Switzerland</subtitle>
+  <subtitle>Compare energy drinks available in Switzerland</subtitle>
   {% for item in products %}<entry>
     <title>{{ (item.brand ~ " " ~ item.product ~ " - " ~ item["size"] ~ "ml (" ~ item["packaging"] ~ ")") | e }}</title>
-    <link href="https://matelab.ch/products/{{ item.siteurl }}"/>
-    <id>https://matelab.ch/products/{{ item.siteurl }}</id>
+    <link href="https://energydb.ch/products/{{ item.siteurl }}"/>
+    <id>https://energydb.ch/products/{{ item.siteurl }}</id>
     <updated>{{ item["newest_update"].strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
     <summary>{{ item.caffeine }}mg caffeine/100ml, {{ item.sugar }}g sugar/100ml</summary>
   </entry>

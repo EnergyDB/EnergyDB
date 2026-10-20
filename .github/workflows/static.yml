@@ -1,4 +1,4 @@
-name: Deploy matelab to GitHub pages
+name: Deploy energydb to GitHub pages
 
 on:
   workflow_dispatch:

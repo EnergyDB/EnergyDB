@@ -1,7 +1,7 @@
 [project]
-name = "matelab"
+name = "energydb"
 version = "0.0.1"
-description = "Matelab is a community driven site about mate-based beverages available in Switzerland"
+description = "EnergyDB is a community driven site about energy drinks available in Switzerland"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
