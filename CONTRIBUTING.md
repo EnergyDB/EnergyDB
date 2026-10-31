@@ -2,7 +2,7 @@
 
 ## Adding a Missing Product
 
-For currently missing products, check out the list of [open issues with the label 'missing product'](https://github.com/matelab-ch/matelab/issues?q=state%3Aopen%20label%3A%22missing%20product%22). To add a new product:
+For currently missing products, check out the list of [open issues with the label 'missing product'](https://github.com/EnergyDB/EnergyDB/issues?q=state%3Aopen%20label%3A%22missing%20product%22). To add a new product:
 
 + Copy the template from `templates/product.yml` into `data`. 
 	+ Give it a name in the format of `<brand>_<product>.yml`. 
@@ -12,7 +12,7 @@ For currently missing products, check out the list of [open issues with the labe
 
 ## Adding Missing Data to a Product
 
-For currently missing data, check out the list of [open issues with the label 'missing data'](https://github.com/matelab-ch/matelab/issues?q=state%3Aopen%20label%3A%22missing%20data%22). To change existing data:
+For currently missing data, check out the list of [open issues with the label 'missing data'](https://github.com/EnergyDB/EnergyDB/issues?q=state%3Aopen%20label%3A%22missing%20data%22). To change existing data:
 
 + Find the product under `data`. 
 + Edit the file and submit your changes via a pull request.

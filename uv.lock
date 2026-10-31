@@ -53,7 +53,7 @@ wheels = [
 ]
 
 [[package]]
-name = "matelab"
+name = "energydb"
 version = "0.0.1"
 source = { virtual = "." }
 dependencies = [

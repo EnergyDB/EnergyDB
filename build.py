@@ -18,7 +18,7 @@ DATA_DIR = os.path.join(SCRIPT_DIR, "data")
 
 def calc_score(caffeine, sugar, avrprice):
     """
-    Calculate the matelab score
+    Calculate the energydb score
 
     caffeine/((sugar+1)/avrprice)
     """
@@ -219,7 +219,7 @@ def gather_sitemap_urls():
     """
 
     return [
-        "https://matelab.ch/" + fpath[len(OUTPUT_DIR) + 1 :]
+        "https://energydb.ch/" + fpath[len(OUTPUT_DIR) + 1 :]
         for fpath in sorted(glob.glob(f"{OUTPUT_DIR}/**/*.html", recursive=True))
     ]
 
